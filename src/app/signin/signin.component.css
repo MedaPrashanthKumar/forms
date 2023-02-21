@@ -1,0 +1,13 @@
+/* input.ng-touched.ng-invalid{
+    border:1px solid red ;
+} */
+
+
+h1{
+    text-align: center;
+}
+
+.container i {
+    margin-left: -30px;
+   cursor: pointer;
+   }

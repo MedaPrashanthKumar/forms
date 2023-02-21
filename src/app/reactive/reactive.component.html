@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+                <h1 style="text-align:center;">Reactive Forms</h1>
+                <form  [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
+                    <!-- Username -->
+                    <div class="m-3">
+                      <label for="username" class="form-label">Username</label>
+                      <input type="text" class="form-control" id="username" aria-describedby="emailHelp" formControlName="username" name="iusername">
+                    </div>
+
+                    <!-- Username Validations -->
+                     <div class="text-danger" *ngIf="submitted || username.invalid && (username.dirty || username.touched)">
+                      <small *ngIf="username.errors.required">
+                        *Please enter the UserName.
+                       </small>
+                       <small *ngIf="((username.errors.minlength) ||(username.errors.maxlength))">
+                         *Accepts Alphabets , space  & Min 5 to Max 30 Char
+                       </small>
+                     </div>
+
+                    <!--Password  -->
+                    <div class="m-3">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="password" name="password" formControlName="password">
+                    </div>
+
+                    <!-- Password Validations -->
+
+                    <!-- Gender -->
+                    <div class="form-check form-check-inline m-3">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          id="inlineCheckbox1"
+                          value="male"
+                          name="gender" formControlName="gender"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox1">Male</label>
+                      </div>
+              
+                      <div class="form-check form-check-inline m-3">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          id="inlineCheckbox2"
+                          value="female"
+                          name="gender" formControlName="gender"
+                        />
+                        <label class="form-check-label" for="inlineCheckbox2">Female</label>
+                      </div>
+
+                    
+                      <!-- Designation -->
+                      <div class="form-floating m-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="floatingInput"
+                          placeholder="Designation"
+                          name="designation" formControlName="designation"
+                        />
+                        <label for="floatingInput">Designation</label>
+                      </div>
+
+
+                      <!-- About Youself -->
+                      <div class="form-floating m-3">
+                        <textarea
+                          class="form-control"
+                          rows="4"
+                          cols="50"
+                          placeholder="About Yourself"
+                          id="floatingTextarea"
+                          ngModel
+                            name="aboutyourself" formControlName="aboutyourself"></textarea>
+                        <label for="floatingTextarea">About Yourself</label>
+                      </div>
+                      <!-- Submit Button -->
+                      <button type="submit" class="btn btn-success m-3">Submit</button>
+              
+                  </form>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>

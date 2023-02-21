@@ -1,0 +1,163 @@
+<!-- <div class="container">
+    <form #signInForm="ngForm"  (ngSubmit)="loginUser(signInForm)">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="emailField" ngModel required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" ngModel required>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="radio" class="form-check-input" id="gender" value="male" name="gender" ngModel required>
+            <label class="form-check-label" for="gender">male</label>
+          </div>
+          <div class="mb-3 form-check">
+            <input type="radio" class="form-check-input" id="gender" value="female" name="gender" ngModel required>
+            <label class="form-check-label" for="gender">female</label>
+          </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" name="terms" ngModel required>
+          <label class="form-check-label" for="exampleCheck1">Agree To Terms</label>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!signInForm.valid">Submit</button>
+      </form>
+</div> -->
+
+<!-- Template Driven Forms -->
+
+<h1>Template Driven forms</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef)" novalidate>
+        <!-- Name -->
+        <div class="form-floating m-3">
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="Name"
+            name="username"
+           #username="ngModel" ngModel
+           required  />
+          <label for="username">Name</label>
+        </div>
+        <!-- Username Validations -->
+        <div *ngIf="username.touched && username.invalid" class="m-3" style="color:red;">
+          *Username is required
+        </div>
+
+        <!-- Password -->
+        <div class="form-floating m-3">
+          <input
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+            name="password"
+            ngModel required #pass="ngModel" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
+        <!-- Password validations -->
+        <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" >
+          <div *ngIf="pass.errors?.['required']" class="m-3" style="color:red;">
+            *Password is required
+          </div>
+          <div *ngIf="pass.errors?.['pattern']" class="m-3" style="color:red;">
+            *Password must contain atleast 1 uppercase , 1 lowercase and number
+          </div>
+          <div *ngIf="pass.errors?.['minlength']" class="m-3" style="color:red;">
+            *Password must contain minlength 8 characters
+          </div>
+        </div>
+       
+
+
+
+        <!-- Gender -->
+        <div class="form-check form-check-inline m-3">
+          <input
+            class="form-check-input"
+            type="radio"
+            id="inlineCheckbox1"
+            value="male"
+            name="gender" required
+            ngModel  #g="ngModel"
+          />
+          <label class="form-check-label" for="inlineCheckbox1">Male</label>
+        </div>
+
+        <div class="form-check form-check-inline m-3">
+          <input
+            class="form-check-input"
+            type="radio"
+            id="inlineCheckbox2"
+            value="female"
+            name="gender" required
+            ngModel
+          />
+          <label class="form-check-label" for="inlineCheckbox2">Female</label>
+        </div>
+
+
+        <!-- Gender Validations -->
+        <div *ngIf="g.touched && g.invalid" class="m-3" style="color:red;">
+          *Gender is required
+        </div>
+
+
+        <!-- Designation -->
+        <div class="form-floating m-3">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Designation"
+            name="designation" required
+            ngModel #desg="ngModel"
+          />
+          <label for="floatingInput">Designation</label>
+        </div>
+
+        <!-- Designation validations -->
+        <div *ngIf="desg.touched && desg.invalid" class="m-3" style="color:red;">
+          *Designation is required
+        </div>
+
+        <!-- About yourself -->
+        <div class="form-floating m-3">
+          <textarea
+            class="form-control"
+            rows="4"
+            cols="50"
+            placeholder="About Yourself"
+            id="floatingTextarea"
+            ngModel
+              name="about yourself" required  #about="ngModel" minlength="20"></textarea>
+          <label for="floatingTextarea">About Yourself</label>
+        </div>
+
+        <!-- About Yourself Validations -->
+        <div *ngIf="about.invalid && (about.dirty || about.touched)" >
+          <div *ngIf="about.errors?.['required']" class="m-3" style="color:red;">
+            *About Yourself is required
+          </div>
+          
+          <div *ngIf="about.errors?.['minlength']" class="m-3" style="color:red;">
+            *About Yourself must contain minlength 20 characters
+          </div>
+        </div>
+       
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-success m-3 " [disabled]="formRef.invalid">Submit</button>
+      </form>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+</div>
+
