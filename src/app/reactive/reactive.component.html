@@ -11,15 +11,6 @@
                     </div>
 
                     <!-- Username Validations -->
-                     <div class="text-danger" *ngIf="submitted || username.invalid && (username.dirty || username.touched)">
-                      <small *ngIf="username.errors.required">
-                        *Please enter the UserName.
-                       </small>
-                       <small *ngIf="((username.errors.minlength) ||(username.errors.maxlength))">
-                         *Accepts Alphabets , space  & Min 5 to Max 30 Char
-                       </small>
-                     </div>
-
                     <!--Password  -->
                     <div class="m-3">
                       <label for="password" class="form-label">Password</label>
@@ -79,6 +70,8 @@
                       </div>
                       <!-- Submit Button -->
                       <button type="submit" class="btn btn-success m-3">Submit</button>
+                      <button type="submit" class="btn btn-primary m-3" (click)="resetForm()">Clear</button>
+                      <button type="submit" class="btn btn-secondary m-3" (click)="addNewItem();">add</button>
               
                   </form>
         </div>
